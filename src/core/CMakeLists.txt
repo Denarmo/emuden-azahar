@@ -496,10 +496,6 @@ add_library(citra_core STATIC EXCLUDE_FROM_ALL
     tracer/recorder.h
 )
 
-if (ENABLE_BUILTIN_KEYBLOB)
-    target_sources(citra_core PRIVATE hw/default_keys.h)
-endif()
-
 if(ENABLE_FFMPEG)
     target_sources(citra_core PRIVATE
         dumping/backend.cpp

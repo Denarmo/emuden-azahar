@@ -392,8 +392,7 @@ static bool do_load_game() {
         LibRetro::DisplayMessage("Failed to load ROM!");
         return false;
     case Core::System::ResultStatus::ErrorLoader_ErrorEncrypted:
-        LibRetro::DisplayMessage("The game that you are trying to load must be decrypted before "
-                                 "being used with Azahar.");
+        LibRetro::DisplayMessage("Encrypted games are not supported. Use a decrypted dump of the game.");
         return false;
     case Core::System::ResultStatus::ErrorLoader_ErrorInvalidFormat:
         LibRetro::DisplayMessage("Error while loading ROM: The ROM format is not supported.");
@@ -544,7 +543,7 @@ bool retro_load_game(const struct retro_game_info* info) {
             switch (result) {
             case Loader::ResultStatus::ErrorEncrypted:
                 LibRetro::DisplayMessage(
-                    "This ROM is encrypted and must be decrypted before use with Azahar.");
+                    "Encrypted games are not supported. Use a decrypted dump of the game.");
                 break;
             case Loader::ResultStatus::ErrorInvalidFormat:
                 LibRetro::DisplayMessage("The ROM format is not supported.");
