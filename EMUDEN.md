@@ -26,3 +26,14 @@ Submodules: `git submodule update --init --recursive --depth 1`.
 `citra_layout_option=default` (top screen over the touch screen, a 400x480 picture),
 `citra_swap_screen=Top`, `citra_render_3d=off`, and `citra_resolution_factor` by device tier.
 No BIOS, keys or firmware are needed for games that run on Azahar's built-in system software.
+
+## No console keys
+
+EmuDEN never touches console keys. This fork has no built-in key blob (`ENABLE_BUILTIN_KEYBLOB` and
+`hw/default_keys.h` are removed) and `HW::AES::GetKeysStream` returns an empty stream, so no keys
+file is read either. Games must be decrypted dumps (.3ds, .cci, .cxi, .3dsx); an encrypted one
+shows "Encrypted games are not supported. Use a decrypted dump of the game."
+Without keys: amiibo, DLP/local-wireless crypto, HTTP client certificates, CIA install of encrypted
+content, and anything that checks RSA/ECC signatures or movable.sed/unique data do not work.
+Checked on a Retroid Duo: a decrypted retail .cci boots and reaches the game's menus.
+
